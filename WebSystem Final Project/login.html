@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+  <title>Chronos Archive — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="login.css"/>
+  <link rel="icon" type="image/x-icon" href="Images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Gold border lines top and bottom -->
+  <div class="border-top"></div>
+  <div class="border-bottom"></div>
+
+  <!-- Floating particles background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Main wrapper -->
+  <div class="login-wrapper">
+
+    <!-- Header -->
+    <header class="site-header">
+      <img src="Images/logo_6.png" alt="Chronos Logo" class="site-logo"/>
+      <h1 class="site-title">CHRONOS ARCHIVE</h1>
+      <p class="site-sub">The Evolution of Computing</p>
+    </header>
+
+    <!-- Divider -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <!-- Corner decorations -->
+      <span class="corner corner-tl"></span>
+      <span class="corner corner-tr"></span>
+      <span class="corner corner-bl"></span>
+      <span class="corner corner-br"></span>
+
+      <!-- ── LOGIN FORM ── -->
+      <div id="loginSection">
+        <p class="card-title">&#9670; Enter the Archive &#9670;</p>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginIdentifier">Username or Email</label>
+            <input type="text" id="loginIdentifier" placeholder="Enter your username or email..." autocomplete="off"/>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password..."/>
+          </div>
+          <!-- Error message shown if login fails -->
+          <p class="form-error" id="loginError"></p>
+          <button type="submit" class="btn-enter">Enter &nbsp;✦</button>
+        </form>
+        <p class="form-switch">
+          Don't have an account?
+          <button class="switch-btn" id="goToRegister">Register</button>
+        </p>
+      </div>
+
+      <!-- ── REGISTER FORM ── -->
+      <div id="registerSection" class="hidden">
+        <p class="card-title">&#9670; Join the Archive &#9670;</p>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="regUsername">Username</label>
+            <input type="text" id="regUsername" placeholder="Choose a username..." autocomplete="off"/>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" placeholder="Enter your email..."/>
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="At least 6 characters..."/>
+          </div>
+          <!-- Error message shown if registration fails -->
+          <p class="form-error" id="registerError"></p>
+          <button type="submit" class="btn-enter">Register &nbsp;✦</button>
+        </form>
+        <p class="form-switch">
+          Already have an account?
+          <button class="switch-btn" id="goToLogin">Back to Login</button>
+        </p>
+      </div>
+
+      <p class="card-footer-text">University of Caloocan City &mdash; Computer Studies Dept.</p>
+    </div>
+
+    <!-- Quote -->
+    <div class="motto-wrapper">
+      <div class="motto-line"></div>
+      <p class="motto">"Time is the wisest counsellor of all." — Pericles</p>
+      <div class="motto-line"></div>
+    </div>
+
+  </div>
+
+<script>
+  /* --- Floating Particles --- */
+  /* Creates 35 small gold dots that float upward in the background */
+  var container = document.getElementById('particles');
+
+  for (var i = 0; i < 300; i++) {
+    var particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.setProperty('--x',     (Math.random() * 100) + 'vw');
+    particle.style.setProperty('--dur',   (6 + Math.random() * 10) + 's');
+    particle.style.setProperty('--delay', (Math.random() * 10) + 's');
+    container.appendChild(particle);
+  }
+
+  /* --- Form Toggle --- */
+  /* Shows and hides the login/register forms with a fade animation */
+  var loginSection    = document.getElementById('loginSection');
+  var registerSection = document.getElementById('registerSection');
+
+  function triggerFade(el) {
+    el.style.animation = 'none';
+    el.offsetHeight; /* force browser to reflow so animation restarts */
+    el.style.animation = '';
+  }
+
+  function showRegister() {
+    loginSection.classList.add('hidden');
+    registerSection.classList.remove('hidden');
+    triggerFade(registerSection);
+    document.getElementById('loginError').textContent = '';
+  }
+
+  function showLogin() {
+    registerSection.classList.add('hidden');
+    loginSection.classList.remove('hidden');
+    triggerFade(loginSection);
+    document.getElementById('registerError').textContent = '';
+  }
+
+  document.getElementById('goToRegister').addEventListener('click', showRegister);
+  document.getElementById('goToLogin').addEventListener('click', showLogin);
+</script>
+
+<!-- Login/Register validation logic -->
+<script src="login.js"></script>
+</body>
+</html>

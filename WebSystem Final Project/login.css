@@ -1,0 +1,364 @@
+/* ============================================
+   login.css — Login Page Styles
+   ============================================ */
+
+/* --- Variables --- */
+:root {
+  --gold:       #C9A84C;
+  --gold-light: #E8C96A;
+  --gold-dark:  #8B6914;
+  --dark:       #12100E;
+  --cream:      #F0E8D0;
+  --muted:      #7A6A4A;
+  --border:     rgba(201, 168, 76, 0.3);
+}
+
+/* --- Reset --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* --- Body --- */
+body {
+  font-family: 'EB Garamond', serif;
+  background-color: #12100E;
+  background-image:
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(100, 70, 40, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(74, 110, 126, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 10% 90%, rgba(180, 115, 51, 0.1) 0%, transparent 55%),
+    linear-gradient(160deg, #1C1410 0%, #12100E 50%, #0E1318 100%);
+  color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  padding: 40px 20px;
+}
+
+/* --- Gold border top and bottom --- */
+.border-top,
+.border-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 100;
+}
+
+.border-top    { top: 0; }
+.border-bottom { bottom: 0; }
+
+/* --- Particles --- */
+/* Small floating gold dots in the background */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  bottom: -10px;
+  animation: float-up var(--dur) ease-in infinite;
+  animation-delay: var(--delay);
+  left: var(--x);
+}
+
+@keyframes float-up {
+  0%   { opacity: 0;   transform: translateY(0) scale(1); }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.2; }
+  100% { opacity: 0;   transform: translateY(-100vh) scale(0.3); }
+}
+
+/* --- Main Wrapper --- */
+.login-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  animation: fade-in-up 0.9s ease both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Header / Logo --- */
+.site-header {
+  margin-bottom: 28px;
+}
+
+/* Logo image - the zeus/greek god illustration */
+.site-logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 20px;
+  /* Tint the white/black image to match gold theme */
+  filter: invert(1) sepia(1) saturate(0.5) brightness(0.85);
+  opacity: 0.85;
+}
+
+.site-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 2.8rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.site-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.45em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* --- Divider --- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.divider-diamond {
+  width: 7px;
+  height: 7px;
+  background-color: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* --- Login Card --- */
+.login-card {
+  position: relative;
+  background-color: rgba(28, 20, 16, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 44px 40px;
+  margin-bottom: 28px;
+  /* Subtle gold glow behind card */
+  box-shadow:
+    0 0 40px rgba(201, 168, 76, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Corner Decorations --- */
+/* Thin gold L-shaped lines at each corner of the card */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.corner-tl {
+  top: 8px;
+  left: 8px;
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+}
+
+.corner-tr {
+  top: 8px;
+  right: 8px;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+.corner-bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+}
+
+.corner-br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+/* --- Card Title --- */
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+/* --- Form Fields --- */
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.form-group input {
+  width: 100%;
+  background-color: #08080D;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 2px;
+  padding: 13px 14px;
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--gold);
+}
+
+/* --- Submit Button --- */
+.btn-enter {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold), var(--gold-dark));
+  border: none;
+  border-radius: 2px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: #08080D;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-enter:hover {
+  opacity: 0.88;
+}
+
+/* --- Card Footer Text --- */
+.card-footer-text {
+  margin-top: 22px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* --- Quote with decorative lines --- */
+.motto-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.motto-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.motto {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+  .site-title { font-size: 2rem; }
+  .login-card { padding: 32px 24px; }
+}
+
+/* --- Form sections fade in when shown --- */
+#loginSection,
+#registerSection {
+  animation: form-fade 0.4s ease both;
+}
+
+@keyframes form-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Hidden class --- */
+/* Used to toggle between login and register forms */
+.hidden {
+  display: none;
+}
+
+/* --- Error Message --- */
+.form-error {
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin-bottom: 10px;
+  min-height: 18px;
+  font-style: italic;
+  text-align: left;
+}
+
+/* --- Switch between Login and Register --- */
+.form-switch {
+  margin-top: 18px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* The clickable "Register" / "Back to Login" text button */
+.switch-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.switch-btn:hover {
+  color: var(--gold-light);
+}
